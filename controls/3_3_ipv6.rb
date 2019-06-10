@@ -86,7 +86,7 @@ control 'cis-dil-benchmark-3.3.3' do
   tag level: 1
 
   describe.one do
-    %w(/boot/grub/grub.conf /boot/grub/grub.cfg /boot/grub/menu.lst /boot/boot/grub/grub.conf /boot/boot/grub/grub.cfg /boot/boot/grub/menu.lst).each do |f|
+    %w(/boot/grub/grub.conf /boot/grub/grub.cfg /boot/grub2/grub.cfg /boot/grub/menu.lst /boot/boot/grub/grub.conf /boot/boot/grub/grub.cfg /boot/boot/grub/menu.lst).each do |f|
       describe file(f) do
         its(:content) { should match(/ipv6\.disable=1/) }
       end
