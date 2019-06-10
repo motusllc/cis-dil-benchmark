@@ -84,7 +84,7 @@ control 'cis-dil-benchmark-2.2.1.2' do
     end
 
     describe file('/etc/sysconfig/ntpd') do
-      its(:content) { should match(/^OPTIONS="(?:.)?-u ntp:ntp\s*(?:.)?"\s*(?:#.*)?$/) }
+      its(:content) { should match(/^OPTIONS="(?:.*)-u ntp:ntp\s*(?:.*)"\s*(?:#.*)?$/) }
     end
 
     describe file('/usr/lib/systemd/system/ntpd.service') do
