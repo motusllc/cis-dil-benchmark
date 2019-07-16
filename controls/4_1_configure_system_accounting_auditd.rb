@@ -298,7 +298,7 @@ control 'cis-dil-benchmark-4.1.12' do
 
   only_if { cis_level == 2 }
 
-  command('find / -path /tmp -prune -o -xdev \( -perm -4000 -o -perm -2000 \) -type f').stdout.split.map { |x| "^-a (always,exit|exit,always) -F path=#{x} -F perm=x -F auid>=#{uid_min} -F auid!=4294967295 -k privileged$" }.each do |entry|
+  command('find / \( -path /tmp -path /var/tmp \) -prune -o -xdev \( -perm -4000 -o -perm -2000 \) -type f').stdout.split.map { |x| "^-a (always,exit|exit,always) -F path=#{x} -F perm=x -F auid>=#{uid_min} -F auid!=4294967295 -k privileged$" }.each do |entry|
     describe file('/etc/audit/audit.rules') do
       its(:content) { should match Regexp.new(entry) }
     end
